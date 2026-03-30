@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Your Name</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Reset & base ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand:       #F5F0E8;
+    --sand-dark:  #EBE4D6;
+    --ink:        #2A2218;
+    --ink-soft:   #5C5042;
+    --teal:       #1A5C55;
+    --teal-mid:   #237A71;
+    --teal-light: #4A9E96;
+    --teal-bg:    #E6F2F1;
+    --teal-bg2:   #D0E8E6;
+    --border:     rgba(42,34,24,0.12);
+    --radius:     12px;
+    --serif:      'Lora', Georgia, serif;
+    --sans:       'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--sand);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── Nav ─────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── Sections ────────────────────────────────── */
+  section {
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 1rem;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  /* ── Hero ────────────────────────────────────── */
+  #hero {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1.5px;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-bio {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    border: 2px solid var(--teal);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--teal);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--border);
+  }
+  .btn-outline:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .hero-scroll {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+  .scroll-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  /* ── About ───────────────────────────────────── */
+  #about {
+    border-top: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2.5rem;
+  }
+
+  .about-text h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+  .about-text p {
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skill-item {
+    background: var(--sand-dark);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .skill-name {
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .skill-bar-bg {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    transition: width 1s ease;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .tag {
+    background: var(--teal-bg);
+    color: var(--teal);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(26,92,85,0.2);
+  }
+
+  /* ── Projects ─────────────────────────────────── */
+  #projects {
+    border-top: 1px solid var(--border);
+  }
+
+  .projects-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .projects-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(42,34,24,0.08);
+  }
+
+  .project-thumb {
+    aspect-ratio: 16/9;
+    background: var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-thumb-mech { background: linear-gradient(135deg, #EBE4D6 0%, #D4C9B4 100%); }
+  .project-thumb-elec { background: linear-gradient(135deg, #E6F2F1 0%, #C4DDD9 100%); }
+  .project-thumb-soft { background: linear-gradient(135deg, #EBE4D6 0%, #D0E8E6 100%); }
+
+  .project-thumb-icon {
+    width: 56px; height: 56px;
+    background: #fff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 2px 12px rgba(42,34,24,0.1);
+  }
+
+  .project-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-type {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .project-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: var(--teal-bg);
+    color: var(--teal);
+    border: 1px solid rgba(26,92,85,0.15);
+  }
+
+  /* ── Resume ───────────────────────────────────── */
+  #resume {
+    border-top: 1px solid var(--border);
+  }
+
+  .resume-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .resume-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+
+  .resume-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .timeline-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .timeline-date {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    padding-top: 0.2rem;
+    font-weight: 300;
+  }
+
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-org {
+    font-size: 0.875rem;
+    color: var(--teal-mid);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  .resume-sidebar-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .resume-sidebar-card h3 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edu-item {
+    margin-bottom: 1rem;
+  }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-degree {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--ink);
+  }
+  .edu-school {
+    font-size: 0.8rem;
+    color: var(--teal-mid);
+  }
+  .edu-year {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tool-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    background: var(--teal-bg);
+    color: var(--teal);
+    border-radius: 999px;
+    font-weight: 500;
+    border: 1px solid rgba(26,92,85,0.15);
+  }
+
+  /* ── Contact ─────────────────────────────────── */
+  #contact {
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2.5rem;
+  }
+
+  .contact-text h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+  .contact-text p {
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .contact-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .contact-links a:hover { color: var(--teal); }
+  .contact-links .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-field label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--teal);
+  }
+
+  /* ── Footer ──────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  footer a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--rust); }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 768px) {
+    .about-grid,
+    .resume-layout,
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .nav-links { display: none; }
+    .timeline-entry {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .form-row { grid-template-columns: 1fr; }
+    .projects-header,
+    .resume-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ───────────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-logo">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">CV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────── -->
+<section id="hero">
+  <p class="hero-eyebrow">Mechanical Engineering PhD Candidate</p>
+  <h1 class="hero-name">
+    Your <em>Name</em>
+  </h1>
+  <p class="hero-bio">
+    I design, build, and analyze — from precision mechanical systems to custom electronics.
+    Currently pursuing my PhD in mechanical engineering, with a soft spot for projects
+    where gears meet code.
+  </p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn btn-primary">See my work</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-dot"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ── About ─────────────────────────────────────── -->
+<section id="about">
+  <p class="section-label">About me</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Builder at heart,<br>researcher by trade.</h2>
+      <p>
+        I'm a PhD student in mechanical engineering fascinated by the intersection of
+        classical mechanics, control systems, and embedded electronics. My research
+        focuses on [your research area], but I'm happiest when I'm prototyping something
+        tangible in the lab.
+      </p>
+      <p>
+        Before my PhD, I [brief background — undergrad, industry experience, etc.].
+        Outside the lab I enjoy [a hobby or two], which keeps me sane.
+      </p>
+      <div class="tag-cloud">
+        <span class="tag">Mechanical design</span>
+        <span class="tag">FEA / FEM</span>
+        <span class="tag">Mechatronics</span>
+        <span class="tag">Arduino / ESP32</span>
+        <span class="tag">3D printing</span>
+        <span class="tag">Control systems</span>
+        <span class="tag">Python</span>
+        <span class="tag">MATLAB</span>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-name">Mechanical design & CAD</div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">FEA / simulation</div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Embedded systems (Arduino, ESP32)</div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 65%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Python / MATLAB</div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 75%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">PCB design (KiCad)</div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Technical writing & research</div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 85%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ─────────────────────────────────── -->
+<section id="projects">
+  <div class="projects-header">
+    <div>
+      <p class="section-label">Projects</p>
+      <h2>Things I've built</h2>
+    </div>
+    <a href="#" class="btn btn-outline" style="font-size:0.85rem">View all on GitHub →</a>
+  </div>
+
+  <div class="project-grid">
+
+    <!-- Project 1 -->
+    <a href="#" class="project-card">
+      <div class="project-thumb project-thumb-mech">
+        <div class="project-thumb-icon">⚙️</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Mechanical</div>
+        <div class="project-title">Your PhD Research Project</div>
+        <p class="project-desc">
+          Brief description of your research project — what problem it solves,
+          what methods you used, and what the outcome was. Keep it jargon-lite
+          so anyone can appreciate the scope.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">FEA</span>
+          <span class="project-tag">SolidWorks</span>
+          <span class="project-tag">Python</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 2 -->
+    <a href="#" class="project-card">
+      <div class="project-thumb project-thumb-elec">
+        <div class="project-thumb-icon">🤖</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Mechatronics</div>
+        <div class="project-title">A Mechatronics Build</div>
+        <p class="project-desc">
+          Description of a mechatronics project — maybe a robot, an automated
+          test rig, or a sensor platform. What did you design, what did you
+          program, and what did you learn?
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Arduino</span>
+          <span class="project-tag">CAD</span>
+          <span class="project-tag">3D printing</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 3 -->
+    <a href="#" class="project-card">
+      <div class="project-thumb project-thumb-soft">
+        <div class="project-thumb-icon">📊</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Analysis / Software</div>
+        <div class="project-title">Data or Simulation Project</div>
+        <p class="project-desc">
+          A computational or data-driven project — maybe simulation work,
+          test data analysis, or a custom tool you wrote to solve a research
+          problem in the lab.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">MATLAB</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Simulation</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 4 -->
+    <a href="#" class="project-card">
+      <div class="project-thumb project-thumb-mech">
+        <div class="project-thumb-icon">🔩</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Mechanical</div>
+        <div class="project-title">Another Design Project</div>
+        <p class="project-desc">
+          Another project showcasing mechanical design chops — a competition
+          entry, a lab instrument you fabricated, or a side project that
+          kept you in the workshop on weekends.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Manufacturing</span>
+          <span class="project-tag">Design for manufacture</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── Resume ─────────────────────────────────────── -->
+<section id="resume">
+  <div class="resume-header">
+    <div>
+      <p class="section-label">CV</p>
+      <h2>Background</h2>
+    </div>
+    <a href="resume.pdf" download class="btn btn-outline" style="font-size:0.85rem">⬇ Download PDF</a>
+  </div>
+
+  <div class="resume-layout">
+    <!-- Timeline -->
+    <div>
+      <p class="section-label" style="margin-bottom:1.5rem">Experience</p>
+
+      <div class="timeline-entry">
+        <div class="timeline-date">2022 – present</div>
+        <div>
+          <div class="timeline-role">PhD Researcher</div>
+          <div class="timeline-org">University Name · Department of Mechanical Engineering</div>
+          <p class="timeline-desc">
+            Your research in a sentence or two. Key contributions, methodologies used,
+            and collaborations. Mention any teaching or supervision duties here too.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-date">Summer 2021</div>
+        <div>
+          <div class="timeline-role">Engineering Intern</div>
+          <div class="timeline-org">Company Name</div>
+          <p class="timeline-desc">
+            What you did during your internship. Keep it specific — which team,
+            what you shipped or analysed, tools used.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-date">2018 – 2022</div>
+        <div>
+          <div class="timeline-role">MEng / BEng Mechanical Engineering</div>
+          <div class="timeline-org">University Name</div>
+          <p class="timeline-desc">
+            First class / distinction / GPA. Dissertation title. Any prizes or
+            notable modules. Final-year project topic.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div>
+      <div class="resume-sidebar-card">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="edu-degree">PhD Mechanical Engineering</div>
+          <div class="edu-school">University Name</div>
+          <div class="edu-year">2022 – present (expected 20XX)</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">MEng / BEng Mechanical Engineering</div>
+          <div class="edu-school">University Name</div>
+          <div class="edu-year">2018 – 2022 · 1st class</div>
+        </div>
+      </div>
+
+      <div class="resume-sidebar-card">
+        <h3>Software & tools</h3>
+        <div class="tools-list">
+          <span class="tool-tag">SolidWorks</span>
+          <span class="tool-tag">ANSYS</span>
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">MATLAB</span>
+          <span class="tool-tag">Arduino IDE</span>
+          <span class="tool-tag">KiCad</span>
+          <span class="tool-tag">LaTeX</span>
+          <span class="tool-tag">Git</span>
+          <span class="tool-tag">Fusion 360</span>
+        </div>
+      </div>
+
+      <div class="resume-sidebar-card">
+        <h3>Awards & talks</h3>
+        <div class="timeline-desc" style="font-size:0.85rem">
+          <p style="margin-bottom:0.5rem">🏆 Award or grant name, Year</p>
+          <p style="margin-bottom:0.5rem">🎤 Conference or talk, Year</p>
+          <p>📄 Published paper or preprint</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ─────────────────────────────────── -->
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <div class="contact-inner">
+    <div class="contact-text">
+      <h2>Let's talk.</h2>
+      <p>
+        Whether you're curious about my research, want to collaborate on a project,
+        or just want to chat about engineering — my inbox is open.
+      </p>
+      <ul class="contact-links">
+        <li>
+          <a href="/cdn-cgi/l/email-protection#a3daccd6e3d6cdcad5c6d1d0cad7da8dc6c7d6">
+            <span class="icon">✉️</span>
+            <span class="__cf_email__" data-cfemail="562f39231623383f203324253f222f78333223">[email&#160;protected]</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/yourhandle" target="_blank">
+            <span class="icon">🔗</span>
+            linkedin.com/in/yourhandle
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/yourhandle" target="_blank">
+            <span class="icon">🐙</span>
+            github.com/yourhandle
+          </a>
+        </li>
+        <li>
+          <a href="https://scholar.google.com/citations?user=XXXX" target="_blank">
+            <span class="icon">🎓</span>
+            Google Scholar profile
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Jane Smith">
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="jane@example.com">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Research collaboration">
+      </div>
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Hi, I came across your work on…"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:fit-content">
+        Send message →
+      </button>
+      <p id="form-status" style="font-size:0.85rem;color:var(--teal);display:none">
+        Thanks! I'll get back to you soon.
+      </p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Your Name</span>
+  <span>Built with HTML & care · Hosted on <a href="https://pages.github.com">GitHub Pages</a></span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Animate skill bars on scroll
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const stored = {};
+  bars.forEach(bar => {
+    stored[bar] = bar.style.width;
+    bar.style.width = '0%';
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = stored[bar];
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.skills-grid').forEach(el => observer.observe(el));
+
+  // Simple form handler (replace with Formspree/Netlify Forms endpoint)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const status = document.getElementById('form-status');
+    status.style.display = 'block';
+    e.target.reset();
+  }
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+current
+        ? 'var(--teal)'
+        : '';
+    });
+  });
+</script>
+
+</body>
+</html>
