@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Your Name</title>
+<title>About — Clayson Briggs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 
 <style>
   /* ── Reset & base ─────────────────────────────── */
@@ -76,7 +76,7 @@
     letter-spacing: 0.03em;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--teal); }
+  .nav-links a:hover, .nav-links a.active { color: var(--teal); }
 
   /* ── Sections ────────────────────────────────── */
   section {
@@ -129,13 +129,25 @@
   }
 
   .hero-name {
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-size: clamp(2.8rem, 7vw, 3.6rem);
     color: var(--ink);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
   }
   .hero-name em {
     font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-subname {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    color: var(--ink);
+    max-width: 560px;
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+  .hero-subname em {
+    font-style: normal;
     color: var(--teal);
   }
 
@@ -151,6 +163,26 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-photo {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(2.15);
+    transform-origin: center center;
   }
 
   .btn {
@@ -216,7 +248,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: center;
     margin-top: 2.5rem;
   }
 
@@ -228,6 +260,41 @@
   .about-text p {
     color: var(--ink-soft);
     margin-bottom: 1rem;
+  }
+  .about-text a {
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+  .about-text a:hover {
+    color: var(--teal);
+  }
+
+  .about-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  .about-photo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  } 
+
+  .photo-caption {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 0.6rem;
+    font-style: italic;
+  }
+  .photo-caption a {
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+  .photo-caption a:hover {
+    color: var(--teal);
   }
 
   .skills-grid {
@@ -512,14 +579,19 @@
   /* ── Contact ─────────────────────────────────── */
   #contact {
     border-top: 1px solid var(--border);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
   }
 
   .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    margin-top: 1.0rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .contact-text h2 {
@@ -556,6 +628,20 @@
     justify-content: center;
     font-size: 1rem;
     flex-shrink: 0;
+  }
+  .contact-links li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .contact-email span {
+    display: none;
+  }
+
+  .contact-label {
+    color: var(--ink-soft);
+    font-weight: 500;
   }
 
   .contact-form {
@@ -618,7 +704,7 @@
     color: var(--ink-soft);
     text-decoration: none;
   }
-  footer a:hover { color: var(--rust); }
+  footer a:hover { color: var(--teal); }
 
   /* ── Responsive ──────────────────────────────── */
   @media (max-width: 768px) {
@@ -646,369 +732,116 @@
 
 <!-- ── Navigation ───────────────────────────────── -->
 <nav>
-  <a href="#hero" class="nav-logo">Your Name</a>
+  <a href="#hero" class="nav-logo">Clayson Briggs</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#resume">CV</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="index.html" class="active">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    
   </ul>
 </nav>
 
 <!-- ── Hero ─────────────────────────────────────── -->
 <section id="hero">
-  <p class="hero-eyebrow">Mechanical Engineering PhD Candidate</p>
-  <h1 class="hero-name">
-    Your <em>Name</em>
-  </h1>
-  <p class="hero-bio">
-    I design, build, and analyze — from precision mechanical systems to custom electronics.
-    Currently pursuing my PhD in mechanical engineering, with a soft spot for projects
-    where gears meet code.
-  </p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn btn-primary">See my work</a>
-    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <!-- p class="hero-eyebrow">Mechanical Engineering PhD Student</p -->
+      <h1 class="hero-name">Clayson Briggs</h1>
+      <h2 class="hero-subname"> <em>coupled transport physics researcher</em> </h2>
+      <p class="hero-bio">
+        I'm a PhD student using simulation to study complex physics problems in<b> fluid mechanics</b>, <b>heat and mass transfer</b>, and <b>atmospheric science</b>. As an engineer, I'm interested in applying this understanding to systems in <b>energy and the environment</b>, such as by predicting the 
+        effects of clouds on the climate or designing more sustainable heating and cooling in buildings. 
+        This website is a collection of my research interests and other things I've built. Feel free to reach out if you have any questions. 
+      </p>
+      <div class="hero-actions">
+        <a href="projects.html" class="btn btn-primary">Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/headshot.webp" alt="Clayson Briggs">
+    </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-dot"></div>
-    Scroll to explore
-  </div>
+  
 </section>
 
 <!-- ── About ─────────────────────────────────────── -->
 <section id="about">
-  <p class="section-label">About me</p>
+  <!--<p class="section-label">About me</p>-->
   <div class="about-grid">
+    <div class="about-photo">
+      <video autoplay loop muted playsinline> -->
+        <source src="img/cylinder_pretty.mp4" type="video/mp4">
+      </video>
+      <!-- <img src="cylinder_compressed.gif" > -->
+      <p class="photo-caption">A fluids simulation I coded of the flow around a cylinder. This phenomenon is known as a <a href=https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_vortex_street target="_blank" rel="noopener">von Karman vortex street</a>. </p>
+    </div>
     <div class="about-text">
-      <h2>Builder at heart,<br>researcher by trade.</h2>
+      <h2>More about me</h2>
       <p>
-        I'm a PhD student in mechanical engineering fascinated by the intersection of
-        classical mechanics, control systems, and embedded electronics. My research
-        focuses on [your research area], but I'm happiest when I'm prototyping something
-        tangible in the lab.
+        I'm a student at UC San Diego, where I work under 
+        <a href=https://coimbra.ucsd.edu target="_blank" rel="noopener">Prof. Carlos F.M. Coimbra</a> in the Mechanical 
+        and Aerospace Engineering Department. Right now, I'm exploring the nonlinear dynamics of 
+        fluid-particle interactions, which has applications in how raindrops and bubbles move. Our 
+        group is also interested in predicting the radiative properties of clouds in the arctic. 
       </p>
       <p>
-        Before my PhD, I [brief background — undergrad, industry experience, etc.].
-        Outside the lab I enjoy [a hobby or two], which keeps me sane.
+        My undergrad background is in general engineering from Harvey Mudd College. This gives me 
+        a broad toolkit to solve modern-day problems and helps me to communicate with engineers 
+        and scientists across disciplines.
       </p>
-      <div class="tag-cloud">
-        <span class="tag">Mechanical design</span>
-        <span class="tag">FEA / FEM</span>
-        <span class="tag">Mechatronics</span>
-        <span class="tag">Arduino / ESP32</span>
-        <span class="tag">3D printing</span>
-        <span class="tag">Control systems</span>
-        <span class="tag">Python</span>
-        <span class="tag">MATLAB</span>
-      </div>
-    </div>
-
-    <div class="skills-grid">
-      <div class="skill-item">
-        <div class="skill-name">Mechanical design & CAD</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 90%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name">FEA / simulation</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 80%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name">Embedded systems (Arduino, ESP32)</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 65%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name">Python / MATLAB</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 75%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name">PCB design (KiCad)</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 50%"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name">Technical writing & research</div>
-        <div class="skill-bar-bg">
-          <div class="skill-bar-fill" style="width: 85%"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Projects ─────────────────────────────────── -->
-<section id="projects">
-  <div class="projects-header">
-    <div>
-      <p class="section-label">Projects</p>
-      <h2>Things I've built</h2>
-    </div>
-    <a href="#" class="btn btn-outline" style="font-size:0.85rem">View all on GitHub →</a>
-  </div>
-
-  <div class="project-grid">
-
-    <!-- Project 1 -->
-    <a href="#" class="project-card">
-      <div class="project-thumb project-thumb-mech">
-        <div class="project-thumb-icon">⚙️</div>
-      </div>
-      <div class="project-body">
-        <div class="project-type">Mechanical</div>
-        <div class="project-title">Your PhD Research Project</div>
-        <p class="project-desc">
-          Brief description of your research project — what problem it solves,
-          what methods you used, and what the outcome was. Keep it jargon-lite
-          so anyone can appreciate the scope.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">FEA</span>
-          <span class="project-tag">SolidWorks</span>
-          <span class="project-tag">Python</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Project 2 -->
-    <a href="#" class="project-card">
-      <div class="project-thumb project-thumb-elec">
-        <div class="project-thumb-icon">🤖</div>
-      </div>
-      <div class="project-body">
-        <div class="project-type">Mechatronics</div>
-        <div class="project-title">A Mechatronics Build</div>
-        <p class="project-desc">
-          Description of a mechatronics project — maybe a robot, an automated
-          test rig, or a sensor platform. What did you design, what did you
-          program, and what did you learn?
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Arduino</span>
-          <span class="project-tag">CAD</span>
-          <span class="project-tag">3D printing</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Project 3 -->
-    <a href="#" class="project-card">
-      <div class="project-thumb project-thumb-soft">
-        <div class="project-thumb-icon">📊</div>
-      </div>
-      <div class="project-body">
-        <div class="project-type">Analysis / Software</div>
-        <div class="project-title">Data or Simulation Project</div>
-        <p class="project-desc">
-          A computational or data-driven project — maybe simulation work,
-          test data analysis, or a custom tool you wrote to solve a research
-          problem in the lab.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">MATLAB</span>
-          <span class="project-tag">Python</span>
-          <span class="project-tag">Simulation</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Project 4 -->
-    <a href="#" class="project-card">
-      <div class="project-thumb project-thumb-mech">
-        <div class="project-thumb-icon">🔩</div>
-      </div>
-      <div class="project-body">
-        <div class="project-type">Mechanical</div>
-        <div class="project-title">Another Design Project</div>
-        <p class="project-desc">
-          Another project showcasing mechanical design chops — a competition
-          entry, a lab instrument you fabricated, or a side project that
-          kept you in the workshop on weekends.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Manufacturing</span>
-          <span class="project-tag">Design for manufacture</span>
-        </div>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ── Resume ─────────────────────────────────────── -->
-<section id="resume">
-  <div class="resume-header">
-    <div>
-      <p class="section-label">CV</p>
-      <h2>Background</h2>
-    </div>
-    <a href="resume.pdf" download class="btn btn-outline" style="font-size:0.85rem">⬇ Download PDF</a>
-  </div>
-
-  <div class="resume-layout">
-    <!-- Timeline -->
-    <div>
-      <p class="section-label" style="margin-bottom:1.5rem">Experience</p>
-
-      <div class="timeline-entry">
-        <div class="timeline-date">2022 – present</div>
-        <div>
-          <div class="timeline-role">PhD Researcher</div>
-          <div class="timeline-org">University Name · Department of Mechanical Engineering</div>
-          <p class="timeline-desc">
-            Your research in a sentence or two. Key contributions, methodologies used,
-            and collaborations. Mention any teaching or supervision duties here too.
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-entry">
-        <div class="timeline-date">Summer 2021</div>
-        <div>
-          <div class="timeline-role">Engineering Intern</div>
-          <div class="timeline-org">Company Name</div>
-          <p class="timeline-desc">
-            What you did during your internship. Keep it specific — which team,
-            what you shipped or analysed, tools used.
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-entry">
-        <div class="timeline-date">2018 – 2022</div>
-        <div>
-          <div class="timeline-role">MEng / BEng Mechanical Engineering</div>
-          <div class="timeline-org">University Name</div>
-          <p class="timeline-desc">
-            First class / distinction / GPA. Dissertation title. Any prizes or
-            notable modules. Final-year project topic.
-          </p>
-        </div>
-      </div>
+      <p>
+        Outside of work, you can find me playing beach volleyball, exploring Southern California 
+        in my car, or getting trivia questions wrong with my friends. 
+      </p>
 
     </div>
-
-    <!-- Sidebar -->
-    <div>
-      <div class="resume-sidebar-card">
-        <h3>Education</h3>
-        <div class="edu-item">
-          <div class="edu-degree">PhD Mechanical Engineering</div>
-          <div class="edu-school">University Name</div>
-          <div class="edu-year">2022 – present (expected 20XX)</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">MEng / BEng Mechanical Engineering</div>
-          <div class="edu-school">University Name</div>
-          <div class="edu-year">2018 – 2022 · 1st class</div>
-        </div>
-      </div>
-
-      <div class="resume-sidebar-card">
-        <h3>Software & tools</h3>
-        <div class="tools-list">
-          <span class="tool-tag">SolidWorks</span>
-          <span class="tool-tag">ANSYS</span>
-          <span class="tool-tag">Python</span>
-          <span class="tool-tag">MATLAB</span>
-          <span class="tool-tag">Arduino IDE</span>
-          <span class="tool-tag">KiCad</span>
-          <span class="tool-tag">LaTeX</span>
-          <span class="tool-tag">Git</span>
-          <span class="tool-tag">Fusion 360</span>
-        </div>
-      </div>
-
-      <div class="resume-sidebar-card">
-        <h3>Awards & talks</h3>
-        <div class="timeline-desc" style="font-size:0.85rem">
-          <p style="margin-bottom:0.5rem">🏆 Award or grant name, Year</p>
-          <p style="margin-bottom:0.5rem">🎤 Conference or talk, Year</p>
-          <p>📄 Published paper or preprint</p>
-        </div>
-      </div>
-    </div>
+  
   </div>
 </section>
 
 <!-- ── Contact ─────────────────────────────────── -->
 <section id="contact">
-  <p class="section-label">Contact</p>
+  <!--<p class="section-label">Contact</p>-->
   <div class="contact-inner">
     <div class="contact-text">
-      <h2>Let's talk.</h2>
-      <p>
+      <h2>Contact info</h2>
+      <!--p>
         Whether you're curious about my research, want to collaborate on a project,
         or just want to chat about engineering — my inbox is open.
-      </p>
+      </p-->
       <ul class="contact-links">
         <li>
-          <a href="/cdn-cgi/l/email-protection#a3daccd6e3d6cdcad5c6d1d0cad7da8dc6c7d6">
-            <span class="icon">✉️</span>
-            <span class="__cf_email__" data-cfemail="562f39231623383f203324253f222f78333223">[email&#160;protected]</span>
+          <span class="contact-label">email:</span>
+          <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#109;&#98;&#114;&#105;&#103;&#103;&#115;&#64;&#117;&#99;&#115;&#100;&#46;&#101;&#100;&#117;" target="_blank" rel="noopener"
+            class="contact-email">cmb<span>rentnor</span>riggs&#64;ucsd<span>.redherring</span>.edu
+          </a>  
+        </li>
+        <li>
+          <span class="contact-label">linkedin:</span>
+          <a href="https://linkedin.com/in/clayson-briggs" target="_blank" rel="noopener">
+            linkedin.com/in/clayson-briggs
           </a>
         </li>
         <li>
-          <a href="https://linkedin.com/in/yourhandle" target="_blank">
-            <span class="icon">🔗</span>
-            linkedin.com/in/yourhandle
+          <span class="contact-label">github:</span>
+          <a href="https://github.com/cbr1ggs" target="_blank" rel="noopener">
+            github.com/cbr1ggs
           </a>
         </li>
-        <li>
-          <a href="https://github.com/yourhandle" target="_blank">
-            <span class="icon">🐙</span>
-            github.com/yourhandle
-          </a>
-        </li>
-        <li>
+        <!--<li>
           <a href="https://scholar.google.com/citations?user=XXXX" target="_blank">
-            <span class="icon">🎓</span>
             Google Scholar profile
           </a>
-        </li>
+        </li>-->
       </ul>
     </div>
-
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-field">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Jane Smith">
-        </div>
-        <div class="form-field">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="jane@example.com">
-        </div>
-      </div>
-      <div class="form-field">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" placeholder="Research collaboration">
-      </div>
-      <div class="form-field">
-        <label for="message">Message</label>
-        <textarea id="message" rows="5" placeholder="Hi, I came across your work on…"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:fit-content">
-        Send message →
-      </button>
-      <p id="form-status" style="font-size:0.85rem;color:var(--teal);display:none">
-        Thanks! I'll get back to you soon.
-      </p>
-    </form>
   </div>
 </section>
 
 <footer>
-  <span>© 2025 Your Name</span>
-  <span>Built with HTML & care · Hosted on <a href="https://pages.github.com">GitHub Pages</a></span>
+  <span>© 2026 Clayson Briggs</span>
+  <span>Built with HTML, Claude, and love · Hosted on <a href="https://pages.github.com">GitHub Pages</a></span>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>

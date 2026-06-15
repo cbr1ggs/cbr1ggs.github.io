@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Clayson Briggs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Reset & base ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand:       #F5F0E8;
+    --sand-dark:  #EBE4D6;
+    --ink:        #2A2218;
+    --ink-soft:   #5C5042;
+    --teal:       #1A5C55;
+    --teal-mid:   #237A71;
+    --teal-light: #4A9E96;
+    --teal-bg:    #E6F2F1;
+    --teal-bg2:   #D0E8E6;
+    --border:     rgba(42,34,24,0.12);
+    --radius:     12px;
+    --serif:      'Lora', Georgia, serif;
+    --sans:       'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--sand);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── Nav ─────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+
+  /* ── Page header ─────────────────────────────── */
+  .page-header {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .page-header h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .page-blurb {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 680px;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .page-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--teal-mid);
+    color: #fff;
+    border: 2px solid var(--teal-mid);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--teal);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--border);
+  }
+  .btn-outline:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* ── Main content ─────────────────────────────── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+
+  /* ── Project section (Research / Not Research) ── */
+  .project-section {
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-section:last-child {
+    border-bottom: none;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+
+  .project-section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-section-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .project-count {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--sand-dark);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.15rem 0.65rem;
+  }
+
+  /* ── Accordion list ───────────────────────────── */
+  .accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  /* ── Accordion item ───────────────────────────── */
+  .accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion-item:last-child { border-bottom: none; }
+
+  /* ── Trigger row ──────────────────────────────── */
+  .accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.4rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: left;
+    transition: background 0.15s;
+    font-family: var(--sans);
+  }
+  .accordion-trigger:hover { background: var(--sand); }
+  .accordion-item.open .accordion-trigger { background: var(--sand); }
+
+  .trigger-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .trigger-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .trigger-type {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+  }
+
+  .trigger-tags {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .trigger-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: var(--teal-bg);
+    color: var(--teal);
+    border: 1px solid rgba(26,92,85,0.15);
+  }
+
+  .trigger-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .trigger-summary {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .trigger-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .trigger-chevron {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--sand-dark);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .accordion-item.open .trigger-chevron {
+    transform: rotate(180deg);
+    background: var(--teal-bg);
+    border-color: rgba(26,92,85,0.2);
+  }
+  .trigger-chevron svg {
+    width: 14px; height: 14px;
+    stroke: var(--ink-soft);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .accordion-item.open .trigger-chevron svg { stroke: var(--teal); }
+
+  /* ── Accordion body ───────────────────────────── */
+  .accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .accordion-item.open .accordion-body {
+    grid-template-rows: 1fr;
+  }
+  .accordion-body-inner {
+    overflow: hidden;
+  }
+
+  .accordion-content {
+    padding: 0 1.75rem 1.75rem;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    border-top: 1px solid var(--border);
+    padding-top: 1.75rem;
+  }
+
+  /* ── Media panel ──────────────────────────────── */
+  .project-media {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .media-frame {
+    width: 100%;
+    /* aspect-ratio: 4/3; */
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--sand-dark);
+    border: 1px solid var(--border);
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; */
+  }
+  .media-frame img {
+    width: 100%;
+    height: auto;
+    /* object-fit: cover; */
+    display: block;
+  }
+  .media-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .media-frame.no-border {
+    border: none;
+    background: transparent;
+  }
+
+  /* Placeholder shown when no image is set */
+  .media-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+  }
+  .media-placeholder-icon {
+    font-size: 2rem;
+    opacity: 0.4;
+  }
+  .media-caption {
+    font-size: 0.775rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ── Text panel ───────────────────────────────── */
+  .project-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-text p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  .project-text p + p { margin-top: 0.25rem; }
+
+  /* ── Citation / links ─────────────────────────── */
+  .project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-links-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+  }
+
+  .citation {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-style: italic;
+    padding: 0.75rem 1rem;
+    background: var(--sand);
+    border-radius: 8px;
+    border-left: 3px solid var(--sand-dark);
+  }
+
+  .project-link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--teal);
+    text-decoration: none;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(26,92,85,0.25);
+    background: #fff;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .project-link:hover {
+    background: var(--teal-bg);
+    border-color: var(--teal);
+  }
+
+  /* ── Footer ──────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  footer a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--teal); }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+
+    .accordion-content {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .trigger-summary { display: none; }
+
+    .accordion-trigger {
+      padding: 1.1rem 1.25rem;
+    }
+    .accordion-content {
+      padding: 0 1.25rem 1.25rem;
+      padding-top: 1.25rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ───────────────────────────────── -->
+<nav>
+  <a href="index.html" class="nav-logo">Clayson Briggs</a>
+  <ul class="nav-links">
+    <li><a href="index.html">About</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+  </ul>
+</nav>
+
+<!-- ── Page header ──────────────────────────────── -->
+<div class="page-header">
+  <!--<p class="section-label">Work</p>-->
+  <h1>Projects</h1>
+  <p class="page-blurb">
+    In my research, I use simulation to translate the complex physics
+    of fluid mechanics, heat transfer, and mass transfer into interpretable, reduced 
+    dynamical models. On the side, I also work on learning more about clouds and atmospheric
+    science from observational data. 
+    My other projects come from internships and whatever else I like to build. 
+    Click any project to expand it.
+  </p>
+  <div class="page-actions">
+    <a href="#research" class="btn btn-primary">Research</a>
+    <a href="#not-research" class="btn btn-primary">Not Research</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!--  SECTION 1 — RESEARCH                        -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="project-section" id="research">
+    <div class="project-section-header">
+      <p class="section-label" style="margin-bottom:0">Research</p>
+      <!--<span class="project-count">2 projects</span>-->
+    </div>
+
+    <div class="accordion-list">
+
+      <!-- ── Research project 1 ─────────────────── -->
+      <div class="accordion-item" id="proj-particle">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">PhD Project</span>
+            </div>
+            <div class="trigger-title">Modeling a particle in unsteady flow</div>
+            <div class="trigger-summary">Using simulation to find the forces acting on a particle immersed in fluid — an extension to a classical problem relevant to multiphase engineering and environmental systems.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame no-border">
+                  <video autoplay loop muted playsinline>
+                    <source src="img/particle_plot_cropped.mp4" type="video/mp4" loading="lazy">
+                  </video>
+                </div>
+                <p class="media-caption">CFD simulation of a spherical particle subjected to an oscillating background flow field, showing the nondimensional vorticity. I relate this mechanism to the force acting on the particle.</p>
+              </div>
+              <div class="project-text">
+                <p>
+                  For my main PhD research project, I use computational fluid dynamics (CFD) simulations to
+                  resolve the unsteady forces acting on a small particle immersed in a background fluid flow.
+                  This is a classical problem in fluid mechanics and has remained an active area of research 
+                  for over a century.
+                </p>
+                <p>
+                  The practical motivation is broad: particles in unsteady flows appear in clouds, as droplets 
+                  in combustion chambers or chemical reactors, and as pollution in oceans. Accurate understanding 
+                  of the forces acting on these particles is needed to better predict and simulate their behavior. 
+                </p>
+                <p>
+                  Outside of practical motivations, the project has allowed me to build my own simulation, 
+                  visualization, and data analysis pipelines, and given me tools for handling and understanding 
+                  nonlinear (and nonlocal) transport physics.
+                </p>
+                <div class="project-links">
+                  <span class="project-links-label">Links & citations</span>
+                  <div class="citation">
+                    In preparation
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Research project 2 ─────────────────── -->
+      <div class="accordion-item" id="proj-vibration">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">Undergrad research</span>
+            </div>
+            <div class="trigger-title">Passive structural vibration control</div>
+            <div class="trigger-summary">Canceling vibrations on beams and other structures using nothing but tuned spring-masses.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame">
+                  <!-- Replace with your image: src="img/vibration-control.png" -->
+                  <div class="media-placeholder">
+                    <div class="media-placeholder-icon">〰️</div>
+                    <span>Animation coming soon<br><code style="font-size:0.7rem"></code></span>
+                  </div>
+                </div>
+                <!-- <p class="media-caption">Animation caption</p> -->
+              </div>
+              <div class="project-text">
+                <p>
+                  For an upper-division undergrad class on structural dynamics, we looked at how we could use 
+                  spring-mass vibration absorbers to control the vibrations of coupled structures. Coupled 
+                  structures arise in applications like airplane wings (panels connected by spars), skyscrapers
+                  spanned by a skybridge, or an offshore platform on piles. 
+                </p>
+                <p>
+                  Using an energy-based model for any set of linear beams, we derived a mathematical method for finding 
+                  appropriate spring-mass absorbers to cancel out vibrations at particular locations along the structure.
+                  We then simulated the beams' responses in MATLAB, confirming the approach (at least, theoretically). 
+                </p>
+                <div class="project-links">
+                  <span class="project-links-label">Links & citations</span>
+                  <div class="citation">
+                    In preparation
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Research project 3 ─────────────────── -->
+      <div class="accordion-item" id="proj-micromixer">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">Undergrad research</span>
+            </div>
+            <div class="trigger-title">Evaluating a microfluidic mixer</div>
+            <div class="trigger-summary">Using simulation to design microfluidic mixers and print high-fidelity tissue engineering models.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame">
+                  <img src="img/micromixer.webp" alt="Streamlines inside of a micromixer cell" loading="lazy">
+                </div>
+                <p class="media-caption">Simulated streamlines of two initially unmixed fluids within one cell of the mixer. Black bar for scale.</p>
+              </div>
+              <div class="project-text">
+                <p>
+                  Bioprinters are devices that print models of human tissue to study diseases and medicines. 
+                  To do this, they use microfluidic mixers, which efficiently mix viscous fluids at small scales.
+                  My role on this project involved simulating 
+                  a model microfluidic mixer using a commercial computational fluid dynamics (CFD) code, 
+                  evaluating its performance for a series of designs, and 
+                  comparing those results to benchtop experiments.  
+                </p>
+                <p>
+                  Later in the project, we investigated incorporating non-Newtonian effects into the simulation,
+                  to see if we could use visco-elastic instabilities to more efficiently mix the fluids. To do 
+                  this, we learned about various viscous and visco-elastic fluid models and ran rheometer 
+                  characterizations. This part of the work was still in progress when I graduated. 
+                </p>
+                <div class="project-links">
+                  <span class="project-links-label">Links & citations</span>
+                  <div class="citation">
+                    In preparation
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /accordion-list -->
+  </div><!-- /project-section research -->
+
+
+  <!-- ════════════════════════════════════════════ -->
+  <!--  SECTION 2 — NOT RESEARCH                    -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="project-section" id="not-research">
+    <div class="project-section-header">
+      <p class="section-label" style="margin-bottom:0">Not research</p>
+      <!--<span class="project-count">2 projects</span>-->
+    </div>
+
+    <div class="accordion-list">
+
+      <!-- ── Personal project 1 ─────────────────── -->
+      <div class="accordion-item" id="proj-sensor">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">Mechatronics Internship</span>
+            </div>
+            <div class="trigger-title">Robotic force-torque sensor</div>
+            <div class="trigger-summary">Designed a complete force-torque sensor for a robotic arm, including mixed-signal circuit, firmware, and mechanical flexure.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame">
+                  <video autoplay loop muted playsinline>
+                    <source src="img/fts.mp4" type="video/mp4" alt="A prototype of the force-torque sensor" loading="lazy">
+                  </video>
+                </div>
+                <p class="media-caption">A prototype of the force-torque sensor registers my touch, as indicated by the LED coming on.</p>
+              </div>
+              <div class="project-text">
+                <p>
+                  During undergrad, I spent a summer doing a mechatronics internship at a startup called Trilobio, 
+                  who builds robots and software for automating biology labs. During the summer, I took on the 
+                  full design cycle for a force-torque sensor intended for collision detection and force-torque 
+                  measurement on the robot's arm and its connected tools. 
+                </p>
+                <p> 
+                  The mechanical side involved designing and machining an aluminum flexure, within which the 
+                  electronics were housed. The electronics consisted of several mixed-signal sensing circuits 
+                  on a custom PCB. The microcontroller firmware took care of the sensing, signal detection, 
+                  and CAN integration within the larger robot.  
+                </p>
+                <p>
+                  Overall, I learned a ton about mechatronics and mixed-signal design over the summer and I 
+                  had a lot of fun solving problems at a fast-paced startup. Being able to develop the full 
+                  cycle of an engineering product was an awesome feeling, and was all I needed to know that I 
+                  chose the right career.
+                </p>
+                <div class="project-links">
+                  <span class="project-links-label">Patent and link</span>
+                  <div class="citation">
+                    Force-torque sensor for a robotic system in a biological processing environment, 63/598,116. Invented by Maximilian Schommer, Clayson Briggs. Filed Nov. 12th, 2023. Patent pending.
+                  </div>
+                  <!-- <div class="citation">
+                    <a href="#">Link to documentation</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Personal project 2 ─────────────────── -->
+      <div class="accordion-item" id="proj-raspi">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">Personal project</span>
+            </div>
+            <div class="trigger-title">Raspberry Pi Media Station</div>
+            <div class="trigger-summary">A custom all-in-one smart TV replacement.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame">
+                  <img src="img/raspi-screenshot.webp" alt="A screenshot of the media station homepage" loading="lazy">
+                </div>
+                <p class="media-caption">A screenshot of the media station's homescreen. Kodi provides access to media, Steam connects to my desktop to stream games, and Chrome is the browser.</p>
+              </div>
+              <div class="project-text">
+                <p>
+                  I found myself growing increasingly frustrated with needing to switch between 
+                  clunky apps on our living room smart TV. I also wanted a way to play PC games from
+                  my couch, even with my desktop computer in the other room (our office).               
+                </p>
+                <p>
+                  So I put together this living room media station on a Raspberry Pi. It connects to
+                  all of the streaming services we use, streams Steam games live from my desktop computer
+                  (with a latency &lt;40 ms), and allows us to surf the web, all from one integrated home 
+                  screen. It's configured to work with either a keyboard or video game controller and 
+                  automatically routes non-local internet traffic through a VPN.   
+                </p>
+                <p>
+                  This project has been partner-approved. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Personal project 3 ─────────────────── -->
+      <div class="accordion-item" id="proj-miata">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">Personal project</span>
+            </div>
+            <div class="trigger-title">2000 Mazda Miata</div>
+            <div class="trigger-summary">The result of my quarter-life crisis.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame">
+                  <img src="img/miata_sunrisehwy.webp" alt="A picture of my Miata on the Sunrise Highway" loading="lazy">
+                </div>
+                <p class="media-caption">My Miata takes a break from a drive on Sunrise Highway (County Rd. S1).</p>
+              </div>
+              <div class="project-text">
+                <p>
+                  My Miata is older than I am, so maintenance is a project 
+                  in and of itself. I haven't done anything too involved with the car (yet), but checking up
+                  on old car whooshes and rattles and doing regular maintenance is a fun way 
+                  for me to practice getting my hands dirty and grow my appreciation for 
+                  analog machinery. Plus not much beats having a working Miata on a twisty road.
+                </p>
+                <p>
+                  On account of a sticking doorlatch, a tight passenger seatbelt, and broken A/C, 
+                  this project is not yet partner-approved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Personal project 4 ─────────────────── -->
+      <div class="accordion-item" id="proj-guitar">
+        <button class="accordion-trigger" aria-expanded="false" onclick="toggle(this)">
+          <div class="trigger-left">
+            <div class="trigger-meta">
+              <span class="trigger-type">Personal project</span>
+            </div>
+            <div class="trigger-title">Electric guitar</div>
+            <div class="trigger-summary">My WIP custom stratocaster.</div>
+          </div>
+          <div class="trigger-right">
+            <div class="trigger-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="accordion-content">
+              <div class="project-media">
+                <div class="media-frame">
+                  <img src="img/guitar.webp" alt="An unfinished electric guitar body" loading="lazy">
+                </div>
+                <p class="media-caption">The routed guitar body with the custom pickguard.</p>
+              </div>
+              <div class="project-text">
+                <p>
+                  I wanted a new guitar, so I figured I would just build it, since the body of an 
+                  electric guitar is mostly just a hunk of wood. I wanted an HSS stratocaster, 
+                  so I put together a custom electronics setup with a normal strat 5-way switch and a 
+                  tone knob that splits the bridge humbucker when you pull it.  
+                </p>
+                <p>
+                  The guitar body is still a WIP, stay tuned. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /accordion-list -->
+  </div><!-- /project-section not research -->
+
+</main>
+
+<footer>
+  <span>© 2026 Clayson Briggs</span>
+  <span>Built with HTML, Claude, and love · Hosted on <a href="https://pages.github.com">GitHub Pages</a></span>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all open items
+    document.querySelectorAll('.accordion-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+    });
+
+    // If it wasn't open, open it
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+
+      // Scroll into view smoothly after animation starts
+      setTimeout(() => {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
+  }
+
+  // Allow deep-linking: projects.html#proj-particle opens that item on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target && target.classList.contains('accordion-item')) {
+        const btn = target.querySelector('.accordion-trigger');
+        if (btn) toggle(btn);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
