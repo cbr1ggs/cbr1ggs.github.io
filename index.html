@@ -899,17 +899,17 @@
   // });
 
   // fade out hero name
-  const heroName = document.querySelector('.hero-name');
-  const navLogo = document.querySelector('.nav-logo');
-
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      navLogo.classList.toggle('name-visible', !entry.isIntersecting);
-    },
-    { threshold: 0 }
-  );
-
-  observer.observe(heroName);
+  if (window.innerWidth > 768) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        navLogo.classList.toggle('name-visible', !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(heroName);
+  } else {
+    navLogo.classList.add('name-visible');
+  }
   
 </script>
 
