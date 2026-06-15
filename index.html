@@ -899,6 +899,9 @@
   // });
 
   // fade out hero name
+  const heroName = document.querySelector('.hero-name');
+  const navLogo = document.querySelector('.nav-logo');
+
   if (window.innerWidth > 768) {
     const observer = new IntersectionObserver(
       ([entry]) => {
